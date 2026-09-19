@@ -1,23 +1,19 @@
-#ifndef SENSOR_BMP280_H
-#define SENSOR_BMP280_H
+#ifndef SENSOR_DHT22_H
+#define SENSOR_DHT22_H
 
 #include "Sensor.h"
-#include <Adafruit_BMP280.h>
+#include <DHT.h>
 
-class SensorBMP280 : public Sensor {
+class SensorDHT22 : public Sensor {
   private:
-    Adafruit_BMP280 bmp;
-    float presionReferencia;
-    float ultimaAltitud;
+    DHT dht;
 
   public:
-    SensorBMP280();
+    SensorDHT22(uint8_t pinAsignado);
 
     bool inicializar() override;
-    float leer() override;        // devuelve presión en hPa
-
-    float leerTemperatura();      // temperatura interna (dato secundario/control)
-    float leerAltitud();          // altitud relativa al punto de partida
+    float leer() override;        // devuelve humedad en %
+    float leerTemperatura();      // temperatura en °C 
 };
 
 #endif
