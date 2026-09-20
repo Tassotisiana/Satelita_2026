@@ -101,7 +101,7 @@ void loop() {
     // el programa esperando una respuesta que nunca llega.
     if (transmisorDisponible) {
       PaqueteRadio datosParaEnviar = paquete.obtenerDatos();
-      bool enviado = transmisor.enviar(&datosParaEnviar);
+      bool enviado = transmisor.enviar(datosParaEnviar);
 
       if (enviado) {
         Serial.println(F("Transmision OK: el receptor confirmo recepcion (ACK)"));
