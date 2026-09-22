@@ -72,7 +72,7 @@ void setup() {
 
   configurarTimer(); // arranca el conteo de 3 segundos por hardware
 
-  Serial.println(F("Sistema listo. Transmitiendo cada 3 segundos..."));
+  Serial.println(F("Sistema listo. Transmitiendo cada 5 segundos..."));
   Serial.println();
 }
 

@@ -70,8 +70,10 @@ bool Transmisor::inicializar() {
     // Tamaño del paquete
     radio.setPayloadSize(sizeof(PaqueteRadio));
 
+    radio.setAutoAck(false);
+
     // Reintentos para ACK
-    radio.setRetries(5, 15);
+    //radio.setRetries(5, 15);
 
     // Direccion de destino
     radio.openWritingPipe(direccion);

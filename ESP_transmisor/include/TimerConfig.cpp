@@ -25,6 +25,6 @@ void configurarTimer() {
   // corre a 80MHz; con divisor 80, el timer cuenta en microsegundos.
   timer = timerBegin(0, 80, true);
   timerAttachInterrupt(timer, &onTimer, true);
-  timerAlarmWrite(timer, 3000000, true); // 3.000.000 us = 3 segundos, autoreload
+  timerAlarmWrite(timer, 5000000, true); // 3.000.000 us = 3 segundos, autoreload
   timerAlarmEnable(timer);
 }
