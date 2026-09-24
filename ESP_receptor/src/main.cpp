@@ -36,16 +36,17 @@ unsigned long ultimaRecepcion = 0;
 
 // ---------- WiFi ----------
 //wifi de la facu
-//const char* ssid = "Alumnos2.4GHz";
-//const char* password = "alumnosfcyt";
+const char* ssid = "Alumnos2.4GHz";
+const char* password = "alumnosfcyt";
 
 //wifi cata
-const char* ssid = "Personal-FF0-2.4GHz";
-const char* password = "EE0E42BFF0";
+//const char* ssid = "Personal-FF0-2.4GHz";
+//const char* password = "EE0E42BFF0";
 
 // ---------- MQTT ----------
 //const char* mqtt_server = "172.21.2.77"; // IP de la compu de Tisi
-const char* mqtt_server = "192.168.0.15";  // IP de la compu de Cata
+const char* mqtt_server = "172.21.0.225";  // IP de la compu de Cata
+//const char* mqtt_server = "172.21.1.13"; //IP de la compu de Anto
 const int mqtt_port = 1883;
 const char* mqtt_topic = "cansat/datos";
 
