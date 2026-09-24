@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-// Clase base ABSTRACTA para todos los sensores (y el reloj) del ESP8266.
+// Clase base ABSTRACTA
 class Sensor {
   protected:
     uint8_t pin;          // pin al que está conectado (0 si usa I2C)

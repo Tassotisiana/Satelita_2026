@@ -18,5 +18,5 @@ float SensorDHT22::leer() {
 }
 
 float SensorDHT22::leerTemperatura() {
-  return dht.readTemperature(); // puede devolver NAN si falla, chequear al usarlo
+  return dht.readTemperature(); 
 }

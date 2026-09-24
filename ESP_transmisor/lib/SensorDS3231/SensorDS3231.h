@@ -15,14 +15,10 @@ class SensorDS3231 : public Sensor {
     bool inicializar() override;
 
     // Devuelve el timestamp como float SOLO para cumplir con la
-    // interfaz común de Sensor. OJO: un float de 32 bits solo puede
-    // representar enteros EXACTOS hasta 2^24 (~16.7 millones), y un
-    // timestamp unix actual ronda los 1700 millones -- por lo tanto
-    // este valor pierde precisión y NO debe usarse para el paquete real.
+    // interfaz común de Sensor. 
     float leer() override;
 
-    // Este es el valor que hay que usar en el paquete: un entero de
-    // 32 bits sin pérdida de precisión.
+    // Valor a usar en el paquete: un entero de 32 bits. 
     uint32_t obtenerTimestamp();
 };
 

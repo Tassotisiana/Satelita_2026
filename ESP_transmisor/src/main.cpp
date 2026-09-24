@@ -19,9 +19,9 @@
 #define PIN_SDA   21  // BMP280 y DS3231 comparten el mismo bus I2C
 #define PIN_SCL   22
 #define PIN_DHT22 27
-#define PIN_LDR   34  // pin de ADC1 -- evitar ADC2, puede fallar con WiFi activo
+#define PIN_LDR   34  // pin de ADC1 
 
-// ---------- Pines del NRF24 (los mismos que ya confirmaste funcionando) ----------
+
 #define PIN_CE   4
 #define PIN_CSN  5
 #define PIN_SCK  18
@@ -43,7 +43,7 @@ Transmisor transmisor(PIN_CE, PIN_CSN, PIN_SCK, PIN_MISO, PIN_MOSI);
 bool transmisorDisponible = false; // evita que enviar() se cuelgue si el módulo no inicializó bien
 
 void setup() {
-  Serial.begin(115200); // mismo baudrate que ya usabas en el test del NRF24
+  Serial.begin(115200); 
   delay(1000);
 
   Wire.begin(PIN_SDA, PIN_SCL);
@@ -53,8 +53,7 @@ void setup() {
   Serial.println(F(" ESP32 (satélite) - CanSat"));
   Serial.println(F("===================================="));
 
-  // Inicializamos los 4 objetos (3 sensores + el reloj) de forma
-  // polimórfica, a través del array.
+  // Inicializamos los 4 objetos (3 sensores + el reloj) de forma polimórfica, a través del array.
   for (uint8_t i = 0; i < CANTIDAD_SENSORES; i++) {
     if (!sensores[i]->inicializar()) {
       Serial.print(F("Error al inicializar sensor n° "));
@@ -62,7 +61,7 @@ void setup() {
     }
   }
 
-  // Inicializamos el NRF24 con la configuración que ya confirmaste
+  
   transmisorDisponible = transmisor.inicializar();
   if (!transmisorDisponible) {
     Serial.println(F("ERROR: NRF24 no detectado -- se omitirá la transmisión"));
@@ -70,7 +69,7 @@ void setup() {
     Serial.println(F("NRF24 detectado y configurado (canal 108, PA_HIGH, 250KBPS)"));
   }
 
-  configurarTimer(); // arranca el conteo de 3 segundos por hardware
+  configurarTimer(); // arranca el conteo de 5 segundos por hardware
 
   Serial.println(F("Sistema listo. Transmitiendo cada 5 segundos..."));
   Serial.println();
@@ -96,9 +95,7 @@ void loop() {
     paquete.actualizar(temperatura, humedad, presion, altitud, luz, timestamp);
     paquete.imprimir(); // para verificar por Serial que los valores estén bien
 
-    // Solo intentamos transmitir si el módulo se inicializó bien --
-    // llamar a enviar() con un módulo que nunca respondió puede colgar
-    // el programa esperando una respuesta que nunca llega.
+    // Transmitimos si el módulo se inicializó bien --
     if (transmisorDisponible) {
       PaqueteRadio datosParaEnviar = paquete.obtenerDatos();
       bool enviado = transmisor.enviar(datosParaEnviar);

@@ -7,9 +7,9 @@ SensorDS3231::SensorDS3231() : Sensor(0) {
 bool SensorDS3231::inicializar() {
   inicializado = rtc.begin();
 
+  // Si el módulo se quedó sin su pila de respaldo y perdió la hora,
+  // lo reseteamos con la fecha/hora en que se compiló este programa
   if (inicializado && rtc.lostPower()) {
-    // Si el módulo se quedó sin su pila de respaldo y perdió la hora,
-    // lo reseteamos con la fecha/hora en que se compiló este programa
     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   }
 
@@ -21,7 +21,7 @@ float SensorDS3231::leer() {
   ultimoTimestamp = ahora.unixtime();
 
   // Guardamos también en "ultimaLectura" (float) solo por consistencia
-  // con la clase base -- para el paquete real se usa obtenerTimestamp().
+  // con la clase base. Para el paquete real usamos obtenerTimestamp().
   ultimaLectura = (float) ultimoTimestamp;
   return ultimaLectura;
 }
